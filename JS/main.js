@@ -1,15 +1,27 @@
 /*
-loop statements:
-while
-for
-*/ 
-let counter = 0;
-while(counter <10){
-    console.log('Hello World');
-    //counter = counter + 1;
-    counter += 1;
-}
+object functions
+*/
 
-for(let i=0; i<10; i++){
-    console.log('Hello World from for loop');
-}
+let students = [
+    {name: "John", age: 20, grade: "A"},
+    {name: "Jane", age: 22, grade: "B"},
+    {name: "Jim", age: 21, grade: "C"}
+]
+console.log('Student',students[0]); 
+
+let student = students.find((s) => {
+  return s.name === "Jane";
+})
+
+let dubblescoreStudents = students.map((s) => {
+  s.age = s.age * 2;
+  return s;
+});
+
+let highGradeStudents = students.filter((s) => {
+  return s.grade === "A";
+});
+
+console.log('Student ',student);
+console.log('Dubble Score Students',dubblescoreStudents);
+console.log('High Grade Students',highGradeStudents);
