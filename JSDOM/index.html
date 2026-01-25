@@ -8,21 +8,31 @@
 
 
 <body>
-<input type="radio" name="gender" value="male" onchange="changeGender()" checked="true"> Male
-<input type="radio" name="gender" value="female" onchange="changeGender()"> Female
+    <h1>งานอดิเรก</h1>
+    <div id="content"></div>
+    
+    <input type="checkbox"name="hobby" value="reading">  อ่านหนังสือ
+    <input type="checkbox"name="hobby" value="swimming"> ว่ายน้ำ
+    <input type="checkbox"name="hobby" value="gaming"> เล่นเกม
+    <button onclick="submitHobby()" >Submit</button>
     <script >
-        function changeGender() {
-            // เลือก gender ททุก input ออกมา
-            let gendersInputs = document.querySelectorAll('input[name="gender"]');
-
-            // ใคร checked อยู่ = เพศโดนเลือกอยู่
-            for (let i = 0; i < gendersInputs.length; i++) {
-                if (gendersInputs[i].checked) {
-                    console.log("Gender selected: " + gendersInputs[i].value);
+       function submitHobby(){
+       //เลือก ไป checkbox ที่มี name เป็น hobby ทั้งหมด
+        let hobbies = document.querySelectorAll('input[name="hobby"]');
+        let contentHTML = '<ul>';
+       //เอาค่าที่เลือก ออกมา
+        for(let i=0; i<hobbies.length; i++){
+            if(hobbies[i].checked){
+                contentHTML += '<li>' + hobbies[i].value + '</li>';
             }
         }
-    }
-                
+        // วนค่าที่เลือก มาแสดงในรูปแบบ ul li 
+        contentHTML += '</ul>';
+
+        //ใส่ html ลงใน div id content
+        let contentDiv = document.getElementById('content');
+        contentDiv.innerHTML = contentHTML;
+       }
     </script>
 </body>
 </html>
