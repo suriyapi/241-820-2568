@@ -49,13 +49,13 @@ const submitData = async () => {
         }
         console.log('submitData', userData);
 
-        //   const errors = validateData(userData);
-        //   if (errors.length > 0) {
-        //       throw {
-        //          message: 'กรุณากรอกข้อมูลให้ครบถ้วน',
-        //          errors: errors
-        //      }
-        //  }
+        const errors = validateData(userData);
+        if (errors.length > 0) {
+            throw {
+                message: 'กรุณากรอกข้อมูลให้ครบถ้วน',
+                errors: errors
+            }
+        }
 
         const response = await axios.post('http://localhost:8000/users', userData);
         console.log('response', response);
@@ -68,7 +68,7 @@ const submitData = async () => {
             console.log('error response', error.response);
             error.message = error.response.data.message;
             error.errors = error.response.data.errors;
-            
+
         }
 
         let htmlData = '<div>'
