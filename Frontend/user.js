@@ -9,11 +9,24 @@ window.onload = async () => {
         htmlData += ` <div>
         ${user.firstname} ${user.lastname}
         <button>Edit</button>
-        <button>Delete</button>
+        <button class='delete' data-id='${user.id}'>Delete</button>
         </div>`
     }
     htmlData += '</div>';
     userDOM.innerHTML = htmlData;
+
+    const deleteDOMs = document.getElementsByClassName("delete");
+    for (let i = 0; i < deleteDOMs.length; i++) {
+        deleteDOMs[i].addEventListener("click", async (event) => {
+            // ดึง id ของ user ที่ต้องการลบจาก data-id attribute
+            const id = event.target.dataset.id;
+            try{
+                await axios.delete(`${BASE_URL}/users/${id}`);
+            }catch(error){
+                console.error("Error deleting user:", error);
+            }    
+        });
+    }
 }
 
 
