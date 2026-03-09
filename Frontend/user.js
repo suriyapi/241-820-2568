@@ -1,5 +1,9 @@
 const BASE_URL = "http://localhost:8000";
 window.onload = async () => {
+    await loadData();
+}
+
+const loadData = async () => {
     const response = await axios.get(`${BASE_URL}/users`);
     console.log(response.data);
     const userDOM = document.getElementById("user");
@@ -22,6 +26,7 @@ window.onload = async () => {
             const id = event.target.dataset.id;
             try{
                 await axios.delete(`${BASE_URL}/users/${id}`);
+                loadData(); // โหลดข้อมูลใหม่หลังจากลบสำเร็จ
             }catch(error){
                 console.error("Error deleting user:", error);
             }    
